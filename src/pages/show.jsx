@@ -1,8 +1,41 @@
 import { useState } from "react"
 import "./show.modules.css"
 
+
 export function Show(props) {
-    function div() {
+
+    // Exemplo de solicitação POST usando o fetch
+const dataToSend = { data: 'Hello, API!' };
+async function post() {
+    fetch('/pages/api/teste', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+            console.log("TESTE")
+        //   console.error('Erro:', error);
+        });
+}
+async function get() {
+    fetch('api/teste', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((response) => response.json())
+    
+}
+
+
+    function divisao() {
         setResultado(valor1 / valor2)
     }
     function mult() {
@@ -30,7 +63,10 @@ export function Show(props) {
                     <button onClick={() => (somar())}>Somar</button>
                     <button onClick={() => (subt())}>Subtrair</button>
                     <button onClick={() => (mult())}>Multiplicar</button>
-                    <button onClick={() => (div())}>Dividir</button>
+                    <button onClick={() => (divisao())}>Dividir</button>
+                    <br></br>
+                    <button onClick={() => (get())}>get</button>
+                    <button onClick={() => (post())}>post</button>
                 </label>
         </div>
     )
